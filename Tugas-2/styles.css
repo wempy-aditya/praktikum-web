@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    /* width: 400px; */
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.input-section {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+ul {
+    list-style: none;
+    margin-top: 10px;
+    padding: 0;
+}
+
+li {
+    background: #f8f9fa;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+li input {
+    border: none;
+    background: none;
+    flex-grow: 1;
+    font-size: 16px;
+    padding: 5px;
+}
+
+li input:focus {
+    outline: none;
+    border-bottom: 1px solid #007bff;
+}
+li {
+    background: #f8f9fa;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+li textarea {
+    border: none;
+    background: none;
+    flex-grow: 1;
+    font-size: 16px;
+    padding: 5px;
+    resize: none; /* Prevent resizing */
+    height: 60px; /* Initial height */
+    width: 400px;
+}
+
+li textarea:focus {
+    outline: none;
+    border-bottom: 1px solid #007bff;
+}
+
+
+li button {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+li button:hover {
+    background-color: #c82333;
+}
+
+.editBtn {
+    background-color: #ffc107;
+    margin-right: 10px;
+}
+
+.editBtn:hover {
+    background-color: #e0a800;
+}
