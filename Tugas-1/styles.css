@@ -11,10 +11,12 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
+    padding: 10px; /* Add padding to prevent overflow */
 }
 
 .calculator {
-    width: 300px;
+    width: 100%; /* Make calculator responsive */
+    max-width: 400px; /* Set a maximum width */
     background-color: #ffffff;
     padding: 20px;
     border-radius: 15px;
@@ -32,6 +34,8 @@ body {
     border-radius: 10px;
     margin-bottom: 10px;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Prevent overflow */
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .buttons {
@@ -85,4 +89,23 @@ button:active {
 
 .clear:hover {
     background-color: #c0392b;
+}
+
+/* Responsive styles */
+@media (max-width: 400px) {
+    button {
+        font-size: 16px; /* Smaller font size on small screens */
+        padding: 15px; /* Reduce padding */
+    }
+
+    #display {
+        font-size: 20px; /* Smaller font size for display */
+        height: 50px; /* Adjust height */
+    }
+}
+
+@media (min-width: 401px) and (max-width: 600px) {
+    button {
+        font-size: 18px; /* Adjust font size for medium screens */
+    }
 }
