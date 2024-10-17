@@ -5,7 +5,6 @@ const addTaskBtn = document.getElementById('addTaskBtn');
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 // Function to render tasks
-// Function to render tasks
 function renderTasks() {
     taskList.innerHTML = ''; // Clear the list before re-rendering
 
@@ -59,6 +58,18 @@ addTaskBtn.addEventListener('click', () => {
         tasks.push({ text: taskText });
         taskInput.value = ''; // Clear the input field
         saveAndRenderTasks();
+    }
+});
+
+document.getElementById("taskInput").addEventListener("keypress", function (event) {
+    if (event.keyCode === 13) { 
+        event.preventDefault(); 
+        const taskText = taskInput.value.trim();
+        if (taskText !== '') {
+            tasks.push({ text: taskText });
+            taskInput.value = ''; 
+            saveAndRenderTasks();
+        }
     }
 });
 

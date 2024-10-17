@@ -52,10 +52,15 @@ button:hover {
     background-color: #0056b3;
 }
 
+.containerList {
+    overflow-y: scroll;
+}
+
 ul {
     list-style: none;
     margin-top: 10px;
     padding: 0;
+    max-height: 400px;
 }
 
 li {
