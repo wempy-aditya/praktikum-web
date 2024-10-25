@@ -1,0 +1,2 @@
+[23-Oct-2024 13:18:03 UTC] PHP Fatal error:  Cannot declare trait Traits\ResponseFormatter, because the name is already in use in /home/wempytec/public_html/praktikum/modul3/codelab2/Traits/ResponseFormatter.php on line 5
+[23-Oct-2024 13:18:12 UTC] PHP Fatal error:  Cannot declare trait Traits\ResponseFormatter, because the name is already in use in /home/wempytec/public_html/praktikum/modul3/codelab2/Traits/ResponseFormatter.php on line 5
