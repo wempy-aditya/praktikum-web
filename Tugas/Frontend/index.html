@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Home</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+    <!-- Header with Hero Image -->
+    <header>
+        <div class="hero">
+            <h1>Welcome to My Blog</h1>
+            <p>Your daily dose of insights, stories, and inspiration.</p>
+            <button onclick="window.location.href='#posts'">Explore Posts</button>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="container">
+        <!-- Blog Posts Section -->
+        <section id="posts">
+            <h2><span>📝</span> Latest Posts</h2>
+            <div id="postList" class="post-list">
+                <!-- Posts will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Sidebar -->
+        <aside>
+            <h3><span>📌</span> About the Blog</h3>
+            <p>This blog shares stories and insights from a variety of fields to inspire and inform readers.</p>
+            <h3><span>📂</span> Categories</h3>
+            <ul>
+                <li><a href="#">Technology</a></li>
+                <li><a href="#">Lifestyle</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Travel</a></li>
+            </ul>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 My Blog. All rights reserved. | <a href="#">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./script.js"></script>
+</body>
+</html>

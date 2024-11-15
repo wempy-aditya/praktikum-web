@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Post Management</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <h2>Admin Dashboard</h2>
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="posts.html">Posts</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Comments</a></li>
+            <li><a href="#">Users</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <!-- Header with Profile -->
+        <header>
+            <h1>Dashboard</h1>
+            <div class="profile">
+                <img src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Picture" class="profile-pic" onclick="toggleDropdown()">
+                <div class="dropdown" id="dropdown">
+                    <a href="#">Profile</a>
+                    <a href="#">Settings</a>
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content -->
+        <div class="container">
+          <button class="btn-add" onclick="showModal('add')">Add Post</button>
+          <div class="post-list" id="postList"></div>
+        </div>
+    </div>
+    
+    
+    <!-- Add/Edit Post Modal -->
+    <div class="modal" id="postModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add Post</h2>
+          <span class="close" onclick="closeModal()">&times;</span>
+        </div>
+        <form id="postForm">
+          <input type="hidden" id="postId" />
+          <label>Title:</label>
+          <input type="text" id="postTitle" required />
+          <label>Content:</label>
+          <textarea id="postContent" required></textarea>
+          <label>Author:</label>
+          <input type="text" id="postAuthor" required />
+          <label>Category:</label>
+          <input type="text" id="postCategory" />
+          <label>Status:</label>
+          <select id="status" name="status">
+            <option id="draft" value="draft">Draft</option>
+            <option id="published" value="published">Published</option>
+          </select>
+          <button type="submit" class="btn-save">Save</button>
+        </form>
+      </div>
+    </div>
+    
+    <script>
+        // Toggle Sidebar
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active'); // Menambah atau menghapus kelas 'active'
+        }
+        
+        // Toggle Dropdown
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown');
+            dropdown.classList.toggle('show'); // Menambah atau menghapus kelas 'show'
+        }
+        
+        // Menutup dropdown saat mengklik di luar
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile-pic')) {
+                const dropdowns = document.getElementsByClassName("dropdown");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    <script src="./script.js"></script>
+</body>
+</html>

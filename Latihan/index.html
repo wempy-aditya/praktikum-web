@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Management</title>
+  <style>
+    /* Base styling */
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .container { max-width: 1200px; margin: auto; padding: 20px; }
+    h1 { text-align: center; }
+    
+    /* Product list styling */
+    .product-list { display: flex; flex-wrap: wrap; gap: 20px; }
+    .product-card { background: #f8f8f8; padding: 20px; border-radius: 8px; width: calc(25% - 20px); position: relative; }
+    .product-card h3 { margin: 0; font-size: 18px; }
+    .product-card .actions { margin-top: 10px; display: flex; gap: 5px; }
+    .product-card button { padding: 5px 10px; border: none; cursor: pointer; border-radius: 4px; }
+    .btn-edit { background-color: #4CAF50; color: white; }
+    .btn-delete { background-color: #f44336; color: white; }
+
+    /* Button styling */
+    .btn-add { display: block; margin: 20px auto; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+
+    /* Modal styling */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; }
+    .modal-content { background: white; padding: 20px; width: 90%; max-width: 500px; border-radius: 8px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; }
+    .modal-header h2 { margin: 0; }
+    .close { cursor: pointer; font-size: 24px; color: #555; }
+    .modal form { display: flex; flex-direction: column; gap: 10px; }
+    .modal input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Product Management</h1>
+  <button class="btn-add" onclick="showModal('add')">Add Product</button>
+  <div class="product-list" id="productList"></div>
+</div>
+
+<!-- Add/Edit Product Modal -->
+<div class="modal" id="productModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="modalTitle">Add Product</h2>
+      <span class="close" onclick="closeModal()">&times;</span>
+    </div>
+    <form id="productForm">
+      <input type="hidden" id="productId" />
+      <label>Product Name:</label>
+      <input type="text" id="productName" required />
+      <button type="submit" style="background-color: #007bff; color: white; padding: 10px; border: none; border-radius: 4px;">Save</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Fetch products from API and display
+  async function fetchProducts() {
+    const response = await fetch('https://wempyaw.com/praktikum/modul4/Latihan/main.php/api/product');
+    const data = await response.json();
+    const productList = document.getElementById('productList');
+    productList.innerHTML = '';
+    data.data.forEach(product => {
+      productList.innerHTML += `
+        <div class="product-card">
+          <h3>${product.product_name}</h3>
+          <p>Created At: ${product.created_at}</p>
+          <p>Updated At: ${product.update_at}</p>
+          <div class="actions">
+            <button class="btn-edit" onclick="showModal('edit', ${product.id}, '${product.product_name}')">Edit</button>
+            <button class="btn-delete" onclick="deleteProduct(${product.id})">Delete</button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  // Show modal
+  function showModal(mode, id = null, name = '') {
+    document.getElementById('productModal').style.display = 'flex';
+    const modalTitle = document.getElementById('modalTitle');
+    const productName = document.getElementById('productName');
+    const productId = document.getElementById('productId');
+
+    if (mode === 'edit') {
+      modalTitle.textContent = 'Edit Product';
+      productName.value = name;
+      productId.value = id;
+    } else {
+      modalTitle.textContent = 'Add Product';
+      productName.value = '';
+      productId.value = '';
+    }
+  }
+
+  // Close modal
+  function closeModal() {
+    document.getElementById('productModal').style.display = 'none';
+  }
+
+  // Add/Edit product
+  document.getElementById('productForm').onsubmit = async function (event) {
+    event.preventDefault();
+    const id = document.getElementById('productId').value;
+    const name = document.getElementById('productName').value;
+
+    if (id) {
+      await fetch(`https://wempyaw.com/praktikum/modul4/Latihan/main.php/api/product/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ product_name: name })
+      });
+    } else {
+      await fetch('https://wempyaw.com/praktikum/modul4/Latihan/main.php/api/product', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ product_name: name })
+      });
+    }
+
+    closeModal();
+    fetchProducts();
+  };
+
+  // Delete product
+  async function deleteProduct(id) {
+    if (confirm('Are you sure you want to delete this product?')) {
+      await fetch(`https://wempyaw.com/praktikum/modul4/Latihan/main.php/api/product/${id}`, { method: 'DELETE' });
+      fetchProducts();
+    }
+  }
+
+  // Initial fetch
+  fetchProducts();
+</script>
+
+</body>
+</html>
